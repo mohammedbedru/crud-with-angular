@@ -1,0 +1,79 @@
+<div class="mat-elevation-z8 mt-5">
+   <table mat-table [dataSource]="dataSource" >
+
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> id </th>
+        <td mat-cell *matCellDef="let branch"> {{branch.id}} </td>
+      </ng-container>
+    
+      <!-- Name Column -->
+      <ng-container matColumnDef="branch_name">
+        <th mat-header-cell *matHeaderCellDef> Branch name </th>
+        <td mat-cell *matCellDef="let branch"> {{branch.branch_name}} </td>
+      </ng-container>
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="branch_code">
+        <th mat-header-cell *matHeaderCellDef> Branch Code </th>
+        <td mat-cell *matCellDef="let branch"> {{branch.branch_code}} </td>
+      </ng-container>
+    
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let branch"> {{branch.address}} </td>
+      </ng-container>
+   
+       <!-- Symbol Column -->
+       <ng-container matColumnDef="action">
+         <th mat-header-cell *matHeaderCellDef> {{isAdmin?'Action':''}} </th>
+         <td mat-cell *matCellDef="let branch">
+            <span *ngIf="isAdmin">
+               <a  routerLink="/branches/{{ branch.id }}">View</a> &nbsp;
+               <a  routerLink="/edit/{{ branch.id }}">edit</a>&nbsp;
+               <button class="btn btn-danger" (click)="deleteBranch(branch.id)">delete</button>
+            </span>
+           
+         </td>
+       </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of branches">
+  </mat-paginator>
+</div>
+
+
+ 
+<!-- <table class="table table-striped m-4">
+   <thead>
+      <tr>
+         <th>Id</th>
+         <th>Branch name</th>
+         <th>Branch code</th>
+         <th>Address</th>
+         <th *ngIf="isAdmin">Action</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr *ngFor="let branch of branches">
+         <th scope="row">{{branch.id}}</th>
+         <th>{{ branch.branch_name }}</th>
+         <td>{{ branch.branch_code }}</td>
+         <td>{{ branch.address }}</td>
+         <td *ngIf="isAdmin">
+            <a routerLink="/branches/{{ branch.id }}">View</a> &nbsp;
+            <a routerLink="/edit/{{ branch.id }}">edit</a>&nbsp;
+            <button class="btn btn-danger" (click)="deleteBranch(branch.id)">delete</button>
+         </td>
+      </tr>
+
+   </tbody>
+</table> -->

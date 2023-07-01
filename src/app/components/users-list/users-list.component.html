@@ -1,0 +1,25 @@
+
+<table class="table table-striped m-4">
+   <thead>
+      <tr>
+         <th>Id</th>
+         <th>Username</th>
+         <th>Email</th>
+         <th>Roles</th>
+         <th>Action</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr *ngFor="let user of users">
+         <th scope="row">{{user.id}}</th>
+         <td>{{ user.username }}</td>
+         <td>{{ user.email }}</td>
+         <!-- <td>{{ user.roles.id }}</td> -->
+         <td>
+            <a routerLink="/users/edit/{{ user.id }}">edit</a>&nbsp;
+            <!-- <button class="btn btn-danger" (click)="deleteUser(user.id)">delete</button> -->
+         </td>
+      </tr>
+
+   </tbody>
+</table>
